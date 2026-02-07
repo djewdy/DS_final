@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 Web Services Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .service-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 5px solid;
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .weather { border-left-color: #3498db; }
+        .quotes { border-left-color: #e74c3c; }
+        .facts { border-left-color: #27ae60; }
+        .crypto { border-left-color: #9b59b6; }
+        
+        .service-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .service-icon {
+            font-size: 2em;
+            margin-right: 10px;
+        }
+        
+        .service-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .input-group {
+            margin-bottom: 15px;
+        }
+        
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ecf0f1;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            width: 100%;
+            transition: transform 0.2s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+            min-height: 60px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        
+        .error {
+            border-left-color: #e74c3c;
+            color: #e74c3c;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .services {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌟 Web Services Dashboard</h1>
+        
+        <div class="services">
+            <!-- Weather Service -->
+            <div class="service-card weather">
+                <div class="service-header">
+                    <span class="service-icon">🌤️</span>
+                    <span class="service-title">Weather</span>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="city" placeholder="Enter city name" value="London">
+                </div>
+                <button class="btn" onclick="getWeather()">Get Weather</button>
+                <div class="result" id="weather-result">Enter a city to get weather information</div>
+            </div>
+            
+            <!-- Quotes Service -->
+            <div class="service-card quotes">
+                <div class="service-header">
+                    <span class="service-icon">💭</span>
+                    <span class="service-title">Inspiration</span>
+                </div>
+                <button class="btn" onclick="getQuote()">Get Quote</button>
+                <div class="result" id="quote-result">Click to get an inspirational quote</div>
+            </div>
+            
+            <!-- Facts Service -->
+            <div class="service-card facts">
+                <div class="service-header">
+                    <span class="service-icon">🧠</span>
+                    <span class="service-title">Random Facts</span>
+                </div>
+                <button class="btn" onclick="getFact()">Get Fact</button>
+                <div class="result" id="fact-result">Click to learn something new</div>
+            </div>
+            
+            <!-- Crypto Service -->
+            <div class="service-card crypto">
+                <div class="service-header">
+                    <span class="service-icon">💰</span>
+                    <span class="service-title">Crypto Prices</span>
+                </div>
+                <div class="input-group">
+                    <select id="crypto">
+                        <option value="bitcoin">Bitcoin</option>
+                        <option value="ethereum">Ethereum</option>
+                        <option value="dogecoin">Dogecoin</option>
+                        <option value="litecoin">Litecoin</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="getCrypto()">Get Price</button>
+                <div class="result" id="crypto-result">Select a cryptocurrency to see current price</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>🚀 Powered by free public APIs • No API keys required</p>
+        </div>
+    </div>
+
+    <script>
+        function showLoading(resultId) {
+            const result = document.getElementById(resultId);
+            result.innerHTML = '🔄 Loading...';
+            result.classList.add('loading');
+            result.classList.remove('error');
+        }
+        
+        function showResult(resultId, content, isError = false) {
+            const result = document.getElementById(resultId);
+            result.innerHTML = content;
+            result.classList.remove('loading');
+            if (isError) {
+                result.classList.add('error');
+            } else {
+                result.classList.remove('error');
+            }
+        }
+        
+        async function getWeather() {
+            const city = document.getElementById('city').value;
+            if (!city) {
+                showResult('weather-result', '❌ Please enter a city name', true);
+                return;
+            }
+            
+            showLoading('weather-result');
+            
+            try {
+                const response = await fetch(`/api/weather?city=${encodeURIComponent(city)}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    const content = `
+                        <strong>🌍 ${data.city}</strong><br>
+                        🌡️ Temperature: ${data.temp}°C<br>
+                        ☁️ Condition: ${data.desc}<br>
+                        💧 Humidity: ${data.humidity}%<br>
+                        💨 Wind: ${data.wind} km/h
+                    `;
+                    showResult('weather-result', content);
+                } else {
+                    showResult('weather-result', `❌ ${data.error}`, true);
+                }
+            } catch (error) {
+                showResult('weather-result', '❌ Network error', true);
+            }
+        }
+        
+        async function getQuote() {
+            showLoading('quote-result');
+            
+            try {
+                const response = await fetch('/api/quote');
+                const data = await response.json();
+                
+                if (data.success) {
+                    const content = `
+                        <strong>✨ "${data.quote}"</strong><br>
+                        <em>— ${data.author}</em>
+                    `;
+                    showResult('quote-result', content);
+                } else {
+                    showResult('quote-result', `❌ ${data.error}`, true);
+                }
+            } catch (error) {
+                showResult('quote-result', '❌ Network error', true);
+            }
+        }
+        
+        async function getFact() {
+            showLoading('fact-result');
+            
+            try {
+                const response = await fetch('/api/fact');
+                const data = await response.json();
+                
+                if (data.success) {
+                    showResult('fact-result', `🎯 ${data.fact}`);
+                } else {
+                    showResult('fact-result', `❌ ${data.error}`, true);
+                }
+            } catch (error) {
+                showResult('fact-result', '❌ Network error', true);
+            }
+        }
+        
+        async function getCrypto() {
+            const crypto = document.getElementById('crypto').value;
+            showLoading('crypto-result');
+            
+            try {
+                const response = await fetch(`/api/crypto?crypto=${crypto}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    const changeEmoji = data.change > 0 ? '📈' : '📉';
+                    const content = `
+                        <strong>💰 ${data.crypto.charAt(0).toUpperCase() + data.crypto.slice(1)}</strong><br>
+                        💵 Price: $${data.price.toLocaleString()}<br>
+                        ${changeEmoji} 24h Change: ${data.change.toFixed(2)}%
+                    `;
+                    showResult('crypto-result', content);
+                } else {
+                    showResult('crypto-result', `❌ ${data.error}`, true);
+                }
+            } catch (error) {
+                showResult('crypto-result', '❌ Network error', true);
+            }
+        }
+        
+        // Load initial quote and fact
+        window.addEventListener('load', () => {
+            getQuote();
+            getFact();
+        });
+    </script>
+</body>
+</html>
