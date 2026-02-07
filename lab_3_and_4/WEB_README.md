@@ -5,11 +5,13 @@ A clean, modern web interface for accessing multiple free public APIs. Built wit
 ## 🚀 Quick Start
 
 1. **Install dependencies:**
+
    ```bash
    pip install Flask requests
    ```
 
 2. **Run the web app:**
+
    ```bash
    python3 web_dashboard.py
    ```
@@ -23,7 +25,7 @@ A clean, modern web interface for accessing multiple free public APIs. Built wit
 
 - **🌤️ Weather**: Real-time weather for any city
 - **💭 Quotes**: Inspirational quotes
-- **🧠 Facts**: Random interesting facts  
+- **🧠 Facts**: Random interesting facts
 - **💰 Crypto**: Live cryptocurrency prices
 
 ## 📱 Modern Web Interface

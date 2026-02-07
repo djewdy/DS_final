@@ -5,6 +5,7 @@ A clean and simple client application that connects to multiple free public web 
 ## 🎯 Features
 
 ### 📡 **Free APIs Used:**
+
 - **🌤️ Weather**: [wttr.in](https://wttr.in) - ASCII weather reports
 - **💭 Quotes**: [Quotable](https://api.quotable.io) - Inspirational quotes
 - **🧠 Facts**: [Useless Facts](https://uselessfacts.jsph.pl) - Random interesting facts
@@ -12,24 +13,29 @@ A clean and simple client application that connects to multiple free public web 
 - **💰 Crypto**: [CoinGecko](https://api.coingecko.com) - Cryptocurrency prices
 
 ### 🖥️ **Two Interfaces:**
+
 1. **GUI Version** (`web_services_dashboard.py`) - Beautiful tkinter interface
 2. **CLI Version** (`simple_web_client.py`) - Clean command-line interface
 
 ## 🚀 Quick Start
 
 ### GUI Version (Recommended)
+
 ```bash
 python3 web_services_dashboard.py
 ```
+
 - Modern tabbed interface
 - Real-time data fetching
 - Easy-to-use forms and buttons
 - Background threading for smooth UI
 
 ### Command Line Version
+
 ```bash
 python3 simple_web_client.py
 ```
+
 - Menu-driven interface
 - Perfect for terminal users
 - Quick and lightweight
@@ -38,30 +44,35 @@ python3 simple_web_client.py
 ## 📱 GUI Interface Features
 
 ### 🌤️ Weather Tab
+
 - Enter any city name
 - Get current weather conditions
 - Detailed forecast information
 - ASCII weather graphics
 
-### 💭 Quotes Tab  
+### 💭 Quotes Tab
+
 - Fetch inspirational quotes
 - Random quote on startup
 - Beautiful typography display
 - Author attribution
 
 ### 🧠 Facts Tab
+
 - Random interesting facts
 - Educational content
 - Refresh for new facts
 - Clean presentation
 
 ### 😂 Jokes Tab
+
 - Programming-specific humor
 - Setup and punchline format
 - Perfect for developers
 - Mood booster!
 
 ### 💰 Crypto Tab
+
 - Real-time cryptocurrency prices
 - Multiple coins supported
 - 24-hour change indicators
@@ -70,6 +81,7 @@ python3 simple_web_client.py
 ## 🔧 Technical Details
 
 ### Dependencies
+
 ```bash
 # Only built-in Python libraries used:
 - tkinter (GUI)
@@ -79,9 +91,11 @@ python3 simple_web_client.py
 ```
 
 ### No API Keys Required
+
 All services are completely free and don't require registration or API keys!
 
 ### Error Handling
+
 - Network timeout protection
 - Graceful error messages
 - Retry-friendly design
@@ -90,18 +104,21 @@ All services are completely free and don't require registration or API keys!
 ## 📋 Usage Examples
 
 ### Weather Lookup
+
 ```
 City: London
 Result: London: ☁️   +7°C
 ```
 
 ### Quote Example
+
 ```
 "The only way to do great work is to love what you do."
 — Steve Jobs
 ```
 
 ### Crypto Price
+
 ```
 Bitcoin: $45,123.45
 📈 24h Change: +2.34%
@@ -110,6 +127,7 @@ Bitcoin: $45,123.45
 ## 🎮 Demo Mode
 
 The command-line version includes a demo mode that shows all services in action:
+
 ```bash
 # Choose option 6 in the CLI menu
 🎲 All Services Demo
@@ -122,6 +140,7 @@ The command-line version includes a demo mode that shows all services in action:
 ## 💡 Why This Project?
 
 ### Educational Value
+
 - **HTTP Requests**: Learn how to make API calls
 - **JSON Parsing**: Handle structured data responses
 - **Threading**: Background operations in GUI
@@ -129,12 +148,14 @@ The command-line version includes a demo mode that shows all services in action:
 - **UI Design**: Both GUI and CLI interfaces
 
 ### Real-World Application
+
 - **Multiple APIs**: Integration with different services
 - **User Experience**: Clean, intuitive interfaces
 - **Data Presentation**: Formatted, readable output
 - **Reliability**: Timeout handling and error recovery
 
 ### Perfect for Portfolios
+
 - **Clean Code**: Well-structured and documented
 - **Modern Features**: Threading, responsive UI
 - **No Dependencies**: Uses only standard library
@@ -143,6 +164,7 @@ The command-line version includes a demo mode that shows all services in action:
 ## 🔄 Extending the Project
 
 Easy to add more APIs:
+
 ```python
 def new_service(self):
     try:
@@ -156,6 +178,7 @@ def new_service(self):
 ## 🌟 Free APIs Recommendations
 
 ### More APIs to Try:
+
 - **📚 Books**: Open Library API
 - **🎵 Music**: Last.fm API
 - **🎬 Movies**: OMDB API
